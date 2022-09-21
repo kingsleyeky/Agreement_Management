@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Agreement_Management.Models.Product>
+
+@{
+    ViewData["Title"] = "GetAll";
+}
+
+<h1>GetAll</h1>
+
+<p>
+    <a asp-action="CreateProduct">Create New</a>
+</p>
+@*<link href="~/lib/datatable/css/datatable.min.css" rel="stylesheet" />
+<link href="~/lib/datatable/css/datatable-bootstrap.min.css" rel="stylesheet" />*@
+<link href="~/lib/DataTables/DataTables-1.12.1/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+<link href="~/lib/DataTables/DataTables-1.12.1/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+
+@if (Model.Any())
+{
+    <table class="table table-bordered table-striped" id="productstable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product_Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product_Number)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Active)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product_Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product_Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Active)
+                    </td>
+                    <td>
+                        <a asp-action="GetProductById" asp-route-id="@item.ProductId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                        <a asp-action="DeleteProductById" asp-route-id="@item.ProductId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+else
+{
+    <h4>No Records found</h4>
+}
+
+
+@section Scripts{
+
+
+    @*<script src="~/lib/datatable/js/datatable.jquery.min.js"></script>
+    <script src="~/lib/datatable/js/datatable.min.js"></script>*@
+
+<script src="~/lib/DataTables/DataTables-1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/DataTables/DataTables-1.12.1/js/dataTables.jqueryui.min.js"></script>
+<script src="~/lib/DataTables/DataTables-1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+}
